@@ -1,8 +1,8 @@
 mov al, 1
 esc:
 db 0
-inc al
-cmp al, 510
+inc ax
+cmp ax, 510
 jz esc_1
 jmp esc
 esc_1:
