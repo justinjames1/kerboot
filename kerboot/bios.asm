@@ -36,12 +36,14 @@ int 0x10
 disk_data: resb 512
 
 mov ah, 2 ;tell bios we are reading from disk.
-mov ch, 128 ;the ammount of sectors.
-mov cl, 64 ;cylinders
-mov dh, 1 ;header 1
+mov ch, 1 ;the total ammount of sectors.
+mov cl, 8 ;cylinders
+mov dh, 4 ;header 1
+mov es, disk_data ;move data read from the disk into a unassigned variable or smth
 mov dl, 0x80 ;specify we are reading from the C: drive
 int 0x13 ;disk controller interrupt
 
+;i hope someones fucking crazy enough to fucking fix the absoulutely horrid disk read.
     mov si, disk_data   
     mov ah, 0x0e       
 
