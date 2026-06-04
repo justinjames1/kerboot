@@ -14,13 +14,14 @@ load: db"LOADING KERNEL."
 
 .title:
 
-    mov si, load     
-    mov ah, 0x0e       
-
 mov al, 0x0D
 int 0x10
 mov al, 0x0A
 int 0x10
+
+    mov si, load     
+    mov ah, 0x0e       
+
 
 .load_loop:        
     lodsb         
@@ -32,16 +33,12 @@ int 0x10
 .load:
 
 
-hlt: 
-hlt
-
 disk_data: resb 512
 
-mov ah, 2
-mov ch, 1
-mov cl, 2
-mov dh, 1
-mov ah, 42h ;read from disk
+mov ah, 2 ;tell bios we are reading from disk.
+mov ch, 128 ;the ammount of sectors.
+mov cl, 64 ;cylinders
+mov dh, 1 ;header 1
 mov dl, 0x80 ;specify we are reading from the C: drive
 int 0x13 ;disk controller interrupt
 
