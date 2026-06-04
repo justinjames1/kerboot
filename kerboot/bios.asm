@@ -1,6 +1,6 @@
 bits 16
-title db"KERBOOT [BIOS]"
-load db"LOADING KERNEL."
+title: db"KERBOOT [BIOS]"
+load: db"LOADING KERNEL."
     mov si, title     
     mov ah, 0x0e       
 
