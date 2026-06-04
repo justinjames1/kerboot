@@ -44,6 +44,9 @@ mov dl, 0x80 ;specify we are reading from the C: drive
 int 0x13 ;disk controller interrupt
 
 ;i hope someones fucking crazy enough to fucking fix the absoulutely horrid disk read.
+
+cmp disk_data, 0xFF ;search for kernel binary entry.
+
     mov si, disk_data   
     mov ah, 0x0e       
 
