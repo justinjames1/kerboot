@@ -29,7 +29,7 @@ int 0x10
     int 0x10        
     jmp .load_loop
 
-load:
+.load:
 
 
 hlt: 
