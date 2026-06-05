@@ -32,6 +32,22 @@ int 0x10
 
 .load:
 
+mov al, 0x0D
+int 0x10
+mov al, 0x0A
+int 0x10
+
+    mov si, disk_data   
+    mov ah, 0x0E       
+
+
+.diskprint_loop:        
+    lodsb         
+    or al, al       
+    jz .keyboard 
+    int 0x10        
+    jmp .diskprint_loop
+
 
 .keyboard:
 mov ah, 0
@@ -53,23 +69,7 @@ int 0x13 ;disk controller interrupt
 
 ;i hope someones fucking crazy enough to fucking fix the absoulutely horrid disk read.
 
-mov al, 0x0D
-int 0x10
-mov al, 0x0A
-int 0x10
 
-    mov si, disk_data   
-    mov ah, 0x0E       
-
-
-.diskprint_loop:        
-    lodsb         
-    or al, al       
-    jz .hlt       
-    int 0x10        
-    jmp .diskprint_loop
-
-.hlt: 
 hlt
 
 disk_data: db"BETA LOAD."
