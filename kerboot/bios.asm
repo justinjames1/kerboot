@@ -12,14 +12,12 @@
     int 0x10        
     jmp .title_loop 
 
+.title:
+
 mov al, 0x0D
 int 0x10
 mov al, 0x0A
 int 0x10
-
-
-.title:
-
 
     mov si, load     
     mov ah, 0x0E       
