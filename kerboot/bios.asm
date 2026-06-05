@@ -1,6 +1,6 @@
 [org 0x7C00]
 [bits 16] 
-
+disk_data: db"BETA LOAD."
 title: db "KERBOOT [BIOS]"
 load: db "LOADING KERNEL."
     mov si, title     
@@ -34,8 +34,13 @@ int 0x10
 
 .load:
 
-disk_data: db"BETA LOAD."
 
+.keyboard:
+mov ah, 0
+int 0x16
+cmp al, 'c'
+jnz .keyboard ;keep scanning until the c key is pressed.
+jz .CDISK_HANDLE
 mov ax, 0x1000
 mov es, ax ;cylinders
 xor bx, bx
@@ -46,6 +51,7 @@ mov cl, 1
 mov dh, 0 ;header
 mov dl, 0x80 ;specify we are reading from the C: drive
 int 0x13 ;disk controller interrupt
+.CDISK_HANDLE:
 
 ;i hope someones fucking crazy enough to fucking fix the absoulutely horrid disk read.
 
