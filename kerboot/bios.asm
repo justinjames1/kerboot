@@ -32,6 +32,7 @@ int 0x10
 
 .load:
 
+disk_data: db"BETA LOAD."
 
 mov ax, 0x1000
 mov es, ax ;cylinders
