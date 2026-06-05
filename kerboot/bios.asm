@@ -1,6 +1,8 @@
-bits 16
-title: db"KERBOOT [BIOS]"
-load: db"LOADING KERNEL."
+[org 0x7C00]
+[bits 16] 
+
+title: db "KERBOOT [BIOS]"
+load: db "LOADING KERNEL."
     mov si, title     
     mov ah, 0x0e       
 
@@ -66,8 +68,6 @@ int 0x10
 
 .hlt: 
 hlt
-
-
 
 times 510 db 0
 db 0x55, 0xaa 
