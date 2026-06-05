@@ -4,7 +4,7 @@ disk_data: db"BETA LOAD."
 title: db "KERBOOT [BIOS]"
 load: db "LOADING KERNEL."
     mov si, title     
-    mov ah, 0x0e       
+    mov ah, 0x0E
 
 
 .title_loop:        
@@ -22,7 +22,7 @@ mov al, 0x0A
 int 0x10
 
     mov si, load     
-    mov ah, 0x0e       
+    mov ah, 0x0E       
 
 
 .load_loop:        
@@ -58,7 +58,7 @@ int 0x13 ;disk controller interrupt
 
 
     mov si, disk_data   
-    mov ah, 0x0e       
+    mov ah, 0x0E       
 
 mov al, 0x0D
 int 0x10
