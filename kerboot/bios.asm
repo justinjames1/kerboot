@@ -37,8 +37,9 @@ mov ax, 0x1000
 mov es, ax ;cylinders
 xor bx, bx
 mov ah, 2 ;tell bios we are reading from disk.
-mov al, 127 ;read from 127 sectors
-mov ch, 63 ;cylinders
+mov al, 63 ;read from 16 sectors
+mov ch, 1 ;cylinders
+mov cl, 1
 mov dh, 0 ;header
 mov dl, 0x80 ;specify we are reading from the C: drive
 int 0x13 ;disk controller interrupt
