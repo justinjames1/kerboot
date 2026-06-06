@@ -1,4 +1,4 @@
-[org 0x7C00]
+org 0x7C00
 [bits 16] 
 
     mov si, title     
@@ -75,6 +75,8 @@ hlt
 disk_data: db"BETA LOAD."
 title: db "KERBOOT [BIOS]"
 load: db "LOADING KERNEL."
+
+jmp 0x7C10 ;jmp to protected mode.
 
 times 510 db 0
 db 0x55, 0xaa 
