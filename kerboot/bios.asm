@@ -53,8 +53,7 @@ int 0x10
 mov ah, 0
 int 0x16
 cmp al, 'c'
-jnz .keyboard ;keep scanning until the c key is pressed.
-jz .CDISK_HANDLE
+jz .CDISK_HANDLE ;keep scan
 mov ax, 0x1000
 mov es, ax ;cylinders
 xor bx, bx
@@ -76,7 +75,7 @@ disk_data: db"BETA LOAD."
 title: db "KERBOOT [BIOS]"
 load: db "LOADING KERNEL."
 
-jmp 0x7C10 ;jmp to protected mode.
+
 
 times 510 db 0
 db 0x55, 0xaa 
