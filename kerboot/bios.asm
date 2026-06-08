@@ -53,7 +53,8 @@ int 0x10
 mov ah, 0
 int 0x16
 cmp al, 'c'
-jz .CDISK_HANDLE ;keep scan
+jz .CDISK_HANDLE 
+jne .keyboard ;keep scan
 mov ax, 0x1000
 mov es, ax ;cylinders
 xor bx, bx
