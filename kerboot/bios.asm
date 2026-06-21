@@ -1,80 +1,46 @@
 org 0x7C00
 [bits 16] 
 
+
     mov si, title     
     mov ah, 0x0E
 
 
-.title_loop:        
+title_loop:        
     lodsb         
     or al, al       
-    jz .title         
+    jz title1      
     int 0x10        
-    jmp .title_loop 
+    jmp title_loop 
 
-.title:
+title1:
 
 mov al, 0x0D
 int 0x10
 mov al, 0x0A
 int 0x10
 
-    mov si, load     
-    mov ah, 0x0E       
+
+   mov si, load     
+    mov ah, 0x0E
 
 
-.load_loop:        
+load_loop:        
     lodsb         
     or al, al       
-    jz .load         
+    jz halt     
     int 0x10        
-    jmp .load_loop
-
-.load:
-
-mov al, 0x0D
-int 0x10
-mov al, 0x0A
-int 0x10
-
-    mov si, disk_data   
-    mov ah, 0x0E       
+    jmp load_loop 
 
 
-.diskprint_loop:        
-    lodsb         
-    or al, al       
-    jz .keyboard 
-    int 0x10        
-    jmp .diskprint_loop
-
-
-.keyboard:
-mov ah, 0
-int 0x16
-cmp al, 'c'
-jz .CDISK_HANDLE 
-jne .keyboard ;keep scan
-mov ax, 0x1000
-mov es, ax ;cylinders
-xor bx, bx
-mov ah, 2 ;tell bios we are reading from disk.
-mov al, 63 ;read from 16 sectors
-mov ch, 1 ;cylinders
-mov cl, 1
-mov dh, 0 ;header
-mov dl, 0x80 ;specify we are reading from the C: drive
-int 0x13 ;disk controller interrupt
-.CDISK_HANDLE:
+halt:
 
 ;i hope someones fucking crazy enough to fucking fix the absoulutely horrid disk read.
 
-
 hlt
 
-disk_data: db"BETA LOAD."
-title: db "KERBOOT [BIOS]"
-load: db "LOADING KERNEL."
+title: db "KERBOOT [BIOS]",0
+load: db "LOADING KERNEL.",0
 
 
 
